@@ -26,14 +26,14 @@ typedef struct {
 	float Ti;					//Czas całkowania
 	float Td;					//Czas różniczkowania
 	int anti_windup_limit;		//Anti-Windup - ograniczenie członu całkującego
-}regulator_structure;
+}PIDRegulator;
 
 // Funkcje do obsługi regulatorów PID, PI, PD, P
 
-void regulator_init(regulator_structure *pid_regulator, float Kp_init, float Ti_init, float Td_init, int anti_windup_limit_init, float histerezis_init, float deadzone_init, int three_pos_reg_controlvalue_init);
+void regulator_init(PIDRegulator *pid_regulator, float Kp_init, float Ti_init, float Td_init, int anti_windup_limit_init, float histerezis_init, float deadzone_init, int three_pos_reg_controlvalue_init);
 
-void regulator_reset(regulator_structure *pid_regulator);
+void regulator_reset(PIDRegulator *pid_regulator);
 
-int PID_calculate(regulator_structure *pid_regulator, regulation_algorithm regulator, float set_value, float process_variable);
+int PID_calculate(PIDRegulator *pid_regulator, regulation_algorithm regulator, float set_value, float process_variable);
 
 #endif /* INC_REGULATORS_H_ */
