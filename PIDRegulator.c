@@ -1,10 +1,13 @@
-/*
- * regulators.c
- *
- *  Created on: Nov 8, 2022
- *      Author: Arkadiusz
+/**
+ * @file PIDRegulator.c
+ * @author Arkadiusz, Bartosz (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-11-15
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
-
 #include "regulators.h"
 
 void regulator_init(PIDRegulator *regulator, float Kp_init, float Ti_init, float Td_init, int anti_windup_limit_init, float hysteresis_init, float deadzone_init, int three_pos_reg_controlvalue_init) {

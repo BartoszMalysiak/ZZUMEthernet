@@ -8,6 +8,7 @@
 #ifndef INC_REGULATORS_H_
 #define INC_REGULATORS_H_
 
+#define INPUT_NUMBER 3
 typedef enum {
 	PID_regulator   = 0,				/* Regualtor w wersji P */
 	PI_regulator    = 1,				/* Regulator w wersji PI */
@@ -38,9 +39,9 @@ typedef struct {
  * 
  */
 typedef struct {
-	float K1;	
-	float K2;
-	float K3;
+	float K;					/* Wzmocnienie stanu */
+	float feedback;				/* Wartosc stanu otrzymana ze sprzezenia zwrotnego */
+	float wartosc_zadana;		/* Wartosc zadana stanu */
 }LQRRegulator;
 
 
@@ -76,5 +77,24 @@ void regulator_reset(PIDRegulator *pid_regulator);
  * @return int 
  */
 int PID_calculate(PIDRegulator *pid_regulator, regulation_algorithm regulator, float set_value, float process_variable);
+
+/**
+ * @brief 
+ * 
+ * @param wzmocnienia 
+ */
+void lqr_regulator_init(float *wzmocnienia);
+
+/**
+ * @brief 
+ * 
+ * @param regulator 
+ * @param control_value 
+ * @param feedback 
+ * @return int 
+ */
+int LQR_calculate(regulation_algorithm regulator, float control_value, float *feedback);
+
+extern LQRRegulator StdLqr[INPUT_NUMBER];
 
 #endif /* INC_REGULATORS_H_ */
